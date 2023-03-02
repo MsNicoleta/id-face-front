@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-// import ParticlesBg from 'particles-bg'
 // import Clarifai from 'clarifai';
+import ParticlesOptions from './components/ParticlesOptions';
 import Navigation from './components/Navigation/Navigation';
 import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import './App.css';
 import Tachyons from 'tachyons';
-// import ParticlesOptions from './ParticlesOptions';
+
+
 
 // const app = new Clarifai.App({
 //   apiKey: 'b932a3c738a4e18a7eec11b756509e5'
@@ -30,8 +31,7 @@ class App extends Component {
     render(){
     return (
       <div className="App">
-        {/* <ParticlesOptions/> */}
-        {/* <ParticlesBg type="circle" bg={true} /> */}
+        <ParticlesOptions className ='particles'/>
         <Navigation />
         <Logo />
         <Rank />
