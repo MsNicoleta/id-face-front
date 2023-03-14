@@ -57,10 +57,10 @@ function ParticlesOptions  () {
                     },
                     links: {
                         color: "#ffffff",
-                        distance: 150,
+                        distance: 140,
                         enable: true,
-                        opacity: 0.5,
-                        width: 1,
+                        opacity: 0.4,
+                        width: .5,
                     },
                     collisions: {
                         enable: true,
