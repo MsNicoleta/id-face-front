@@ -123,7 +123,7 @@ import './App.css';
         <div className="App">
           <ParticlesOptions id ="particles"/>
           <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
-          
+
           {route === 'home'
           ?<div>
           <Logo />
