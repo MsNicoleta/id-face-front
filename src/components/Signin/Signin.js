@@ -20,7 +20,7 @@ const Signin = (onRouteChange) => {
                 </fieldset>
                 <div className="">
                 <input
-                onclick={() => onRouteChange('home')}
+                onClick={this. onSubmitSignIn}
                 className="b ph3 pv2 input-reset ba br2 b--black bg-transparent grow pointer f6 dib"
                 type="submit"
                 alue="Sign in"
