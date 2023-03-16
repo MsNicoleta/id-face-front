@@ -7,7 +7,7 @@ const Register = (onRouteChange) => {
         <main className="pa4 black-80">
             <form className="measure">
                 <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-                <legend className="f2 fw6 ph0 mh0">Sign In</legend>
+                <legend className="f2 fw6 ph0 mh0">Register</legend>
                 <div className="mt3">
                     <label className="db fw6 lh-copy f6" type= "full-name"for="full-name">Full Name</label>
                     <input className="pa2 input-reset b--black ba bg-transparent hover-bg-black hover-white w-100" type="email" name="email-address"  id="email-address"/>
@@ -30,7 +30,7 @@ const Register = (onRouteChange) => {
                 alue="Sign in"
                 />
                 </div>
-               
+
             </form>
         </main>
     </article>
