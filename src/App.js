@@ -144,22 +144,22 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-  onRouteChange = (/* route */) => {
-    this.setState({route:'home'})
- /*    if (route === 'signout') {
+  onRouteChange = (route) => {
+    this.setState({route:route})
+    if (route === 'signout') {
       this.setState({isSignedIn: false})
     } else if (route === 'home') {
       this.setState({isSignedIn: true})
     }
-    this.setState({route: route}); */
-  } 
+    this.setState({route: route});
+  }
 
   render() {
     const { isSignedIn, imageUrl, route, box } = this.state;
     return (
       <div className="App">
         <ParticlesOptions id ="particles"/>
-        <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
+        <Navigation  isSignedIn={isSignedIn}  onRouteChange={this.onRouteChange} />
         { route === 'home'
           ? <div>
               <Logo />
@@ -175,8 +175,8 @@ class App extends Component {
             </div>
           : (
              route === 'signin'
-             ? <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
-             : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+             ? <Signin /* loadUser={this.loadUser} */ onRouteChange={this.onRouteChange}/>
+             : <Register /* loadUser={this.loadUser} */ onRouteChange={this.onRouteChange}/>
             )
         }
       </div>

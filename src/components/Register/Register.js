@@ -5,19 +5,19 @@ const Register = (onRouteChange) => {
   return (
     <article className="br3 ba  b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
         <main className="pa4 black-80">
-            <form className="measure">
+            <div className="measure">
                 <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
                 <legend className="f2 fw6 ph0 mh0">Register</legend>
                 <div className="mt3">
-                    <label className="db fw6 lh-copy f6" type= "full-name"for="full-name">Full Name</label>
+                    <label className="db fw6 lh-copy f6" type= "full-name"htmlfor="full-name">Full Name</label>
                     <input className="pa2 input-reset b--black ba bg-transparent hover-bg-black hover-white w-100" type="email" name="email-address"  id="email-address"/>
                 </div>
                 <div className="mt3">
-                    <label className="db fw6 lh-copy f6"type= "email" for="email-address">Email</label>
+                    <label className="db fw6 lh-copy f6"type= "email" htmlfor="email-address">Email</label>
                     <input className="pa2 input-reset b--black ba bg-transparent hover-bg-black hover-white w-100" type="email" name="email-address"  id="email-address"/>
                 </div>
                 <div className="mv3">
-                    <label className="db fw6 lh-copy f6" type= "password" for="password">Password</label>
+                    <label className="db fw6 lh-copy f6" type= "password" htmlfor="password">Password</label>
                     <input className="b--black pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="password"  id="password"/>
                 </div>
 
@@ -31,7 +31,7 @@ const Register = (onRouteChange) => {
                 />
                 </div>
 
-            </form>
+            </div>
         </main>
     </article>
   );
