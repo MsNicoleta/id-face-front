@@ -14,7 +14,7 @@ Platform:
   darwin arm64
 
 Trace: 
-  Error: EACCES: permission denied, unlink '/Users/ng/1Self-WebDev/ZeroToMastery/face-id/node_modules/protobufjs/CHANGELOG.md'
+  Error: EACCES: permission denied, unlink '/Users/ng/1Self-WebDev/ZeroToMastery/face-id/node_modules/protobufjs/README.md'
 
 npm manifest: 
   {
