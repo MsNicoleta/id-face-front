@@ -11,6 +11,7 @@ import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import Tachyons from 'tachyons';
+
 import './App.css';
 
 
@@ -81,21 +82,21 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost3000/')
+    fetch('http://localhost:3000')
       .then(response => response.json())
-    .then(data => console.log(data))
+      .then(console.log)
   }
 
 
-  loadUser = (data) => {
-    this.setState({user: {
-      id: data.id,
-      name: data.name,
-      email: data.email,
-      entries: data.entries,
-      joined: data.joined
-    }})
-  }
+  // loadUser = (data) => {
+  //   this.setState({user: {
+  //     id: data.id,
+  //     name: data.name,
+  //     email: data.email,
+  //     entries: data.entries,
+  //     joined: data.joined
+  //   }})
+  // }
 
   calculateFaceLocation = (data) => {
     const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
