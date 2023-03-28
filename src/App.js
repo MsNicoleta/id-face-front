@@ -81,9 +81,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost3000')
+    fetch('http://localhost3000/')
       .then(response => response.json())
-    .then(console.log)
+    .then(data => console.log(data))
   }
 
 
