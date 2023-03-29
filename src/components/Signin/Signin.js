@@ -20,7 +20,7 @@ class Signin extends React.Component {
   onSubmitSignIn = () => {
     fetch('http://localhost:3000/signin', {
       method: 'post',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         email: this.state.signInEmail,
         password: this.state.signInPassword
@@ -32,6 +32,7 @@ class Signin extends React.Component {
         if (data === 'success') {
           this.props.onRouteChange('home');
         }
+        console.log(this.state);
       })
     }
     
@@ -56,11 +57,12 @@ class Signin extends React.Component {
                     </div>
                     <div className="mv3">
                         <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
-                    <input className="b--black pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
-                      type="password"
-                      name="password"
-                      id="password"
-                      onChange={this.onPasswordChange}
+                    <input
+                      className="b--black pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                        type="password"
+                        name="password"
+                        id="password"
+                        onChange={this.onPasswordChange}
                     />
                     </div>
 
@@ -74,8 +76,7 @@ class Signin extends React.Component {
                     />
                     </div>
                     <div className="lh-copy mt3">
-                    <p onClick={()=> onRouteChange ('register')} className="f6 link dim black db pointer">Register</p>
-
+                    <p  onClick={() => onRouteChange('register')} className="f6 link dim black db pointer">Register</p>
                     </div>
                 </div>
             </main>
