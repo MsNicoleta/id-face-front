@@ -18,10 +18,25 @@ class Signin extends React.Component {
     this.setState({ signInPassword:event.target.value});
   }
   onSubmitSignIn = () => {
-    console.log(this.state);
-    this.props.onRouteChange('home')
-  }
-  render() {
+    fetch('http://localhost:3000/signin', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: this.state.signInEmail,
+        password: this.state.signInPassword
+      })
+    })
+      // console.log(this.state);
+      .then(response => response.json())
+      .then(data => {
+        if (data === 'success') {
+          this.props.onRouteChange('home');
+        }
+      })
+    }
+    
+  
+  render(){
     const { onRouteChange } = this.props;
         return (
         <article className="br3 ba  b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
@@ -31,11 +46,22 @@ class Signin extends React.Component {
                     <legend className="f2 fw6 ph0 mh0">Sign In</legend>
                     <div className="mt3">
                         <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
-                        <input className="pa2 input-reset b--black ba bg-transparent hover-bg-black hover-white w-100" type="email" name="email-address"  id="email-address"/>
+                    <input 
+                      className="pa2 input-reset b--black ba bg-transparent hover-bg-black hover-white w-100"
+                      type="email"
+                      name="email-address"
+                      id="email-address"
+                      onChange={this.onEmailChange}
+                    />
                     </div>
                     <div className="mv3">
                         <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
-                        <input className="b--black pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="password"  id="password"/>
+                    <input className="b--black pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                      type="password"
+                      name="password"
+                      id="password"
+                      onChange={this.onPasswordChange}
+                    />
                     </div>
 
                     </fieldset>
