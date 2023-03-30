@@ -7,28 +7,28 @@ class Register extends React.Component {
     this.state = {
       email: '',
         password: '',
-        name:'',
+        name:''
       
 
     }
   }
-  onNameChange = (event) => { 
-      this.setState({name: event.target.value });
-      
-  onEmailChange = (event) => { 
-    this.setState({email:event.target.value});
-  }
-  onPasswordChange = (event) => { 
-    this.setState({password:event.target.value});
-  }
+    onNameChange = (event) => {
+        this.setState({ name: event.target.value });
+    }
+    onEmailChange = (event) => { 
+        this.setState({email:event.target.value});
+    }
+    onPasswordChange = (event) => { 
+        this.setState({password:event.target.value});
+    }
       
       onSubmitSignIn = () => {
-    fetch('http://localhost:3000/signin', {
+    fetch('http://localhost:3000/register', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         email: this.state.email,
-        password: this.state.password
+        password: this.state.password,
         name: this.state.name
       })
     })
@@ -36,10 +36,10 @@ class Register extends React.Component {
       .then(response => response.json())
       .then(user => {
           if (user) {
-            this.props.loadUser = (user)
+            this.props.loadUser(user)
             this.props.onRouteChange('home');
         }
-        console.log(this.state);
+        // console.log(this.state);
       })
     }
       render() {
@@ -73,14 +73,13 @@ class Register extends React.Component {
                                     id="password"
                                     onChange = {this.onPasswordChange}/>
                             </div>
-
                         </fieldset>
                         <div className="">
                             <input
-                                onclick={this.onSubmitSignIn() => onRouteChange('home')}
+                                onClick={this.onSubmitSignIn}
                                 className="b ph3 pv2 input-reset ba br2 b--black bg-transparent grow pointer f6 dib"
                                 type="submit"
-                                alue="Sign in"
+                                alue="Register"
                             />
                         </div>
 

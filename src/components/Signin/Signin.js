@@ -32,7 +32,7 @@ class Signin extends React.Component {
         if (data === 'success') {
           this.props.onRouteChange('home');
         }
-        console.log(this.state);
+        // console.log(this.state);
       })
     }
     
