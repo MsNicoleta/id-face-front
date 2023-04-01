@@ -91,3 +91,4 @@ class Register extends React.Component {
 }
 
 export default Register;
+// When using 'this' in an object, this will refer to the object itself This makes it easy to refer to an object's values in the object's methods.

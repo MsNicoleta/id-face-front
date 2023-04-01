@@ -72,7 +72,7 @@ class App extends Component {
       route: 'signin',
       isSignedIn: false,
       user: {
-        id: '',
+        id: '123',
         name: '',
         email: '',
         entries: 0,
@@ -81,21 +81,24 @@ class App extends Component {
     }
   }
 
-  // componentDidMount() {
-  //   fetch('http://localhost:3000')
-  //     .then(response => response.json())
-  //     .then(console.log)
-  // }
+  componentDidMount() {
+    fetch('http://localhost:3000')
+      .then(response => response.json())
+      .then(console.log)}
+  
 
 
-  loadUser = (data) => {
+   loadUser = (data) => {
     this.setState({user: {
       id: data.id,
       name: data.name,
       email: data.email,
       entries: data.entries,
       joined: data.joined
-    }})
+    }
+      
+    })
+     console.log(this.state);
   }
 
   calculateFaceLocation = (data) => {
@@ -139,10 +142,11 @@ class App extends Component {
           })
             .then(response => response.json())
             .then(count => {
-             this.setState(Object.assign(this.state.user, { entries: count}))
+              this.setState(Object.assign(this.state.user.id, { entries: count }))
+              // here it will show us how many times the user insert an image
             })
           .catch(console.log)
-
+              
         }
         this.displayFaceBox(this.calculateFaceLocation(response))
       })
