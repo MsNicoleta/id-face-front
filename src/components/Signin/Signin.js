@@ -6,16 +6,16 @@ class Signin extends React.Component {
     super(props);
     this.state = {
       signInEmail: '',
-      signInPassword: '',
+      signInPassword: ''
       
 
     }
   }
-  onEmailChange = (event) => { 
-    this.setState({ signInEmail:event.target.value});
+  onEmailChange = (event) => {
+    this.setState({signInEmail: event.target.value})
   }
-  onPasswordChange = (event) => { 
-    this.setState({ signInPassword:event.target.value});
+  onPasswordChange = (event) => {
+    this.setState({signInPassword: event.target.value})
   }
   onSubmitSignIn = () => {
     fetch('http://localhost:3000/signin', {
@@ -29,10 +29,11 @@ class Signin extends React.Component {
       // console.log(this.state);
       .then(response => response.json())
       .then(user => {
-        if (user === 'success') {
+        if (user.id) {
+          this.props.loadUser(user)
           this.props.onRouteChange('home');
         }
-        // console.log(this.state);
+         console.log(this.state);
       })
     }
     

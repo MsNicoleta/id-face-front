@@ -82,7 +82,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000')
+    fetch('http://localhost:3000/')
       .then(response => response.json())
       .then(console.log)}
   
@@ -95,9 +95,7 @@ class App extends Component {
       email: data.email,
       entries: data.entries,
       joined: data.joined
-    }
-      
-    })
+    }})
      console.log(this.state);
   }
 
