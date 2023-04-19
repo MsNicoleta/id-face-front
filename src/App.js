@@ -21,52 +21,48 @@ import './App.css';
 // });
 
 
-const returnClarifaiRequestOptions = (imageUrl) => {
-  // Your PAT (Personal Access Token) can be found in the portal under Authentification
-  const PAT = '7738aef8052d46e8affdf625f56f2606';
-  // Specify the correct user_id/app_id pairings
-  // Since you're making inferences outside your app's scope
-  const USER_ID = '2ln47k71c6a5';
-  const APP_ID = 'face-id'
-  // Change these to whatever model and image URL you want to use
-  const MODEL_ID = 'face-detection';
-  const IMAGE_URL = imageUrl;
+// const returnClarifaiRequestOptions = (imageUrl) => {
+//   // Your PAT (Personal Access Token) can be found in the portal under Authentification
+//   const PAT = '7738aef8052d46e8affdf625f56f2606';
+//   // Specify the correct user_id/app_id pairings
+//   // Since you're making inferences outside your app's scope
+//   const USER_ID = '2ln47k71c6a5';
+//   const APP_ID = 'face-id'
+//   // Change these to whatever model and image URL you want to use
+//   const MODEL_ID = 'face-detection';
+//   const IMAGE_URL = imageUrl;
 
-  const raw = JSON.stringify({
-    "user_app_id": {
-        "user_id": USER_ID,
-        "app_id": APP_ID
-    },
-    "inputs": [
-        {
-            "data": {
-                "image": {
-                    "url": IMAGE_URL
-                }
-            }
-        }
-    ]
-});
+//   const raw = JSON.stringify({
+//     "user_app_id": {
+//         "user_id": USER_ID,
+//         "app_id": APP_ID
+//     },
+//     "inputs": [
+//         {
+//             "data": {
+//                 "image": {
+//                     "url": IMAGE_URL
+//                 }
+//             }
+//         }
+//     ]
+// });
 
- const requestOptions = {
-    method: 'POST',
-    headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Key ' + PAT
-    },
-    body: raw
-};
-return requestOptions;
- }
-
-
+//  const requestOptions = {
+//     method: 'POST',
+//     headers: {
+//         'Accept': 'application/json',
+//         'Authorization': 'Key ' + PAT
+//     },
+//     body: raw
+// };
+// return requestOptions;
+//  }
 
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      input: '',
+
+const initialstate = {/*  ths will allow us to initialize the state of the page at every sign in and out */
+  input: '',
       imageUrl: '',
       box: {},
       route: 'signin',
@@ -78,13 +74,17 @@ class App extends Component {
         entries: 0,
         joined: ''
       }
-    }
+}
+class App extends Component {
+  constructor() {
+    super();
+    this.state = initialstate;
   }
 
-  componentDidMount() {
-    fetch('http://localhost:3000/')
-      .then(response => response.json())
-      .then(console.log)}
+  // componentDidMount() {
+  //   fetch('http://localhost:3000/')
+  //     .then(response => response.json())
+  //     .then(console.log)}
   
 
 
@@ -119,17 +119,17 @@ class App extends Component {
   onInputChange = (event) => {
     this.setState({input: event.target.value});
   }
-
   onButtonSubmit = () => {
     this.setState({imageUrl: this.state.input});
-
-    // App.models.predict('face-detection', this.state.input) This would work if we woulf of used the clarifai packedge instalation. but as are fetching the information directly with the help of our PTA (personl tolken access it wont work the same way. ) 
-    fetch("https://api.clarifai.com/v2/models/" + 'face-detection' + "/outputs", returnClarifaiRequestOptions(this.state.input ))
-      
+      fetch('http://localhost:3000/imageurl', {
+        method: 'post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          input: this.state.input
+        })
+      })
       .then(response => response.json())
-
       .then(response => {
-        // console.log('hi', response)
         if (response) {
           fetch('http://localhost:3000/image', {
             method: 'put',
@@ -140,21 +140,49 @@ class App extends Component {
           })
             .then(response => response.json())
             .then(count => {
-              this.setState(Object.assign(this.state.user.id, { entries: count }))
-              // here it will show us how many times the user insert an image
+              this.setState(Object.assign(this.state.user, { entries: count}))
             })
-          .catch(console.log)
-              
+            .catch(console.log)
+
         }
         this.displayFaceBox(this.calculateFaceLocation(response))
       })
       .catch(err => console.log(err));
   }
 
+  // the below function is connected from the front-end to the clarify api to work.
+  // onButtonSubmit = () => {
+  //   this.setState({imageUrl: this.state.input});
+
+  //   // App.models.predict('face-detection', this.state.input) This would work if we woulf of used the clarifai packedge instalation. but as are fetching the information directly with the help of our PTA (personl tolken access it wont work the same way. ) 
+  //  /*  fetch("https://api.clarifai.com/v2/models/" + 'face-detection' + "/outputs", returnClarifaiRequestOptions(this.state.input ))
+  //     .then(response => response.json()) */
+  //       .then(response => {
+  //       // console.log('hi', response)
+  //       if (response) {
+  //         fetch('http://localhost:3000/image', {
+  //           method: 'put',
+  //           headers: {'Content-Type': 'application/json'},
+  //           body: JSON.stringify({
+  //             id: this.state.user.id
+  //           })
+  //         })
+  //           .then(response => response.json())
+  //           .then(count => {
+  //             this.setState(Object.assign(this.state.user, { entries: count }))
+  //             // here it will show us how many times the user insert an image
+  //           })
+  //         .catch(console.log)
+              
+  //       }
+  //       this.displayFaceBox(this.calculateFaceLocation(response))
+  //     })
+  //     .catch(err => console.log(err));
+  // }
+
   onRouteChange = (route) => {
-    this.setState({route:route})
     if (route === 'signout') {
-      this.setState({isSignedIn: false})
+      this.setState(initialstate) // at the sign out state the previouse details of the image will be erased.
     } else if (route === 'home') {
       this.setState({isSignedIn: true})
     }
