@@ -133,7 +133,7 @@ class App extends Component {
       .then(response => response.json())
       .then(response => {
         if (response) {
-          fetch('https://face-id-backend-heroku-e1390d18d445.herokuapp.com: 29504/image', {
+          fetch('https://face-id-backend-heroku-e1390d18d445.herokuapp.com/image', {
             method: 'put',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
