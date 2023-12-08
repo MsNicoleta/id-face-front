@@ -1,22 +1,22 @@
 import React from 'react';
 
-
 class Signin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       signInEmail: '',
       signInPassword: ''
-
-
     }
   }
+
   onEmailChange = (event) => {
     this.setState({ signInEmail: event.target.value })
   }
+
   onPasswordChange = (event) => {
     this.setState({ signInPassword: event.target.value })
   }
+
   onSubmitSignIn = () => {
     fetch('https://face-id-backend-heroku-e1390d18d445.herokuapp.com/signin', {
       method: 'post',
@@ -26,7 +26,6 @@ class Signin extends React.Component {
         password: this.state.signInPassword
       })
     })
-      // console.log(this.state);
       .then(response => response.json())
       .then(user => {
         if (user.id) {
@@ -37,47 +36,48 @@ class Signin extends React.Component {
       })
   }
 
-
   render() {
     const { onRouteChange } = this.props;
     return (
-      <article className="br3 ba  b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
-        <main className="pa4 black-80">
+      <article className="  rounded-lg bg-silver  my-4 w-full md:w-1/2 lg:w-1/4 max-w-md shadow-lg mx-auto">
+        <main className="p-4 text-gray-800">
           <div className="measure">
-            <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-              <legend className="f2 fw6 ph0 mh0">Sign In</legend>
-              <div className="mt3">
-                <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
+            <fieldset id="sign_up" className="border border-transparent px-0 mx-0">
+              <legend className="text-2xl font-semibold px-0 mx-0">Sign In</legend>
+              <div className="mt-3">
+                <label className="block font-semibold leading-tight text-sm" htmlFor="email-address">Email</label>
                 <input
-                  className="pa2 input-reset b--black ba bg-transparent hover-bg-black hover-white w-100"
+                  placeholder='@example.com'
+                  className="p-2 border  rounded  bg-transparent hover:bg-black hover:text-white w-full"
                   type="email"
                   name="email-address"
                   id="email-address"
                   onChange={this.onEmailChange}
                 />
               </div>
-              <div className="mv3">
-                <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
+              <div className="my-3">
+                <label className="block font-semibold leading-tight text-sm" htmlFor="password">Password</label>
                 <input
-                  className="b--black pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                  placeholder='******'
+                  autoComplete="current-password"
+                  className=" rounded p-2 border bg-transparent hover:bg-black hover:text-white w-full"
                   type="password"
                   name="password"
                   id="password"
                   onChange={this.onPasswordChange}
                 />
               </div>
-
             </fieldset>
             <div className="">
               <input
                 onClick={this.onSubmitSignIn}
-                className="b ph3 pv2 input-reset ba br2 b--black bg-transparent grow pointer f6 dib"
+                className="font-bold px-4 py-1 border rounded border-red bg-transparent hover:scale-105 cursor-pointer text-sm inline-block"
                 type="submit"
-                alue="Sign in"
+                value="Sign in"
               />
             </div>
-            <div className="lh-copy mt3">
-              <p onClick={() => onRouteChange('register')} className="f6 link dim black db pointer">Register</p>
+            <div className="leading-tight mt-3">
+              <p onClick={() => onRouteChange('register')} className="text-sm link dim black db cursor-pointer hover:scale-105">Register</p>
             </div>
           </div>
         </main>

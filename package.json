@@ -32,16 +32,16 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-
-     "semi": ["error", "always"],
-    "quotes": ["error", "double"] ,
-
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
+ "eslintConfig": {
+  "extends": [
+    "react-app",
+    "react-app/jest"
+  ],
+  "rules": {
+    "semi": ["warn", "always"],
+    "quotes": ["warn", "double"]
+  }
+},
   "browserslist": {
     "production": [
       ">0.2%",
