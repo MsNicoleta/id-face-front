@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 class Register extends React.Component {
   constructor(props) {
     super(props);
@@ -8,8 +7,6 @@ class Register extends React.Component {
       email: '',
       password: '',
       name: ''
-
-
     }
   }
   onNameChange = (event) => {
@@ -32,7 +29,6 @@ class Register extends React.Component {
         name: this.state.name
       })
     })
-      //  console.log(this.state);
       .then(response => response.json())
       .then(user => {
         if (user.id) {
@@ -44,45 +40,44 @@ class Register extends React.Component {
   }
   render() {
     return (
-      <article className="br3 ba  b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
-        <main className="pa4 black-80">
-          <div className="measure">
-            <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-              <legend className="f2 fw6 ph0 mh0">Register</legend>
-              <div className="mt3">
-                <label className="db fw6 lh-copy f6" type="full-name" htmlFor="full-name">Full Name</label>
-                <input className="pa2 input-reset b--black ba bg-transparent hover-bg-black hover-white w-100"
-                  type="name"
-                  name="name"
-                  id="name"
-                  onChange={this.onNameChange} />
-              </div>
-              <div className="mt3">
-                <label className="db fw6 lh-copy f6" type="email" htmlFor="email-address">Email</label>
-                <input className="pa2 input-reset b--black ba bg-transparent hover-bg-black hover-white w-100"
-                  type="email"
-                  name="email-address"
-                  id="email-address"
-                  onChange={this.onEmailChange} />
-              </div>
-              <div className="mv3">
-                <label className="db fw6 lh-copy f6" type="password" htmlFor="password">Password</label>
-                <input className="b--black pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
-                  type="password"
-                  name="password"
-                  id="password"
-                  onChange={this.onPasswordChange} />
-              </div>
-            </fieldset>
-            <div className="">
-              <input
-                onClick={this.onSubmitSignIn}
-                className="b ph3 pv2 input-reset ba br2 b--black bg-transparent grow pointer f6 dib"
-                type="submit"
-                alue="Register"
-              />
-            </div>
+      <article className="rounded overflow-hidden bg-silver my-4 shadow-lg mx-auto w-full md:w-1/2 lg:w-1/4">
+        <main className="px-6 py-4">
+          <div className="text-2xl font-semibold my-4 mb-2">Register</div>
+          <div className="my-3">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">Full Name</label>
+            <input className=" p-2 shadow-inner  rounded  bg-transparent hover:bg-black hover:text-white w-full"
+              type="name"
+              name="name"
+              id="name"
+              onChange={this.onNameChange}
+              placeholder='John Doe' />
+          </div>
+          <div className="my-3">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email-address">Email</label>
+            <input className=" p-2 shadow-inner  rounded  bg-transparent hover:bg-black hover:text-white w-full"
+              type="email"
+              name="email-address"
+              id="email-address"
+              onChange={this.onEmailChange}
+              placeholder='@example.com' />
+          </div>
+          <div className="my-3">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">Password</label>
+            <input className=" p-2 shadow-inner  rounded  bg-transparent hover:bg-black hover:text-white w-full"
+              type="password"
+              name="password"
+              id="password"
+              onChange={this.onPasswordChange}
+              placeholder='******' />
+          </div>
+          <div className="my-3">
 
+            <input
+              onClick={this.onSubmitSignIn}
+              className="font-bold  py-3  rounded bg-transparent  cursor-pointer text-sm inline-block shadow-md hover:bg-black hover:text-white w-full mt-4 mb-6"
+              type="submit"
+              value="Register"
+            />
           </div>
         </main>
       </article>
@@ -91,4 +86,3 @@ class Register extends React.Component {
 }
 
 export default Register;
-// When using 'this' in an object, this will refer to the object itself This makes it easy to refer to an object's values in the object's methods.
